@@ -15,11 +15,12 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js'
-			],
+      ],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
 		css: [
-			'modules/*/client/css/*.css'
+			'modules/*/client/css/*.css',
+      'http://strapdownjs.com/v/0.2/themes/cerulean.min.css'
 		],
 		less: [
 			'modules/*/client/less/*.less'
