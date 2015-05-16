@@ -2,10 +2,10 @@
 
 module.exports = {
 	app: {
-		title: 'MEAN.JS',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-		keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
-		googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
+		title: 'Made In China.doc',
+		description: 'The missing doc of the Chineses Electronics components',
+		keywords: 'MEANJS, China, Chine, Doc, documentation, Made in china, Made in china doc, Electronics, Electronic, components',
+		googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-63063320-1'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
