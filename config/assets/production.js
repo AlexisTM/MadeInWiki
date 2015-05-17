@@ -4,8 +4,6 @@ module.exports = {
 	client: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
@@ -14,9 +12,14 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-				'public/lib/angular-file-upload/angular-file-upload.min.js'
+				'public/lib/angular-file-upload/angular-file-upload.min.js',
+        'public/lib/angular-load/angular-load.js'
 			]
 		},
+    themes: [
+      'public/lib/themes/readable.min.css',
+      'public/lib/themes/require/glyphicons.css'
+    ],
 		css: 'public/dist/application.min.css',
 		js: 'public/dist/application.min.js'
 	}
