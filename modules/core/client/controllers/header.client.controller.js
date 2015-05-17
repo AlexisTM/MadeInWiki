@@ -42,6 +42,7 @@ angular.module( 'core' ).controller( 'HeaderController', [ '$scope', '$state', '
     ];
 
     $scope.currentTheme = 'readable';
+    $scope.loadedThemes = [];
 
     function disableTheme() {
       var links = [];
@@ -49,34 +50,37 @@ angular.module( 'core' ).controller( 'HeaderController', [ '$scope', '$state', '
       for ( var i = links.length - 1; i >= 0; i-- ) {
         if ( links[ i ].href.indexOf( 'themes/' + $scope.currentTheme ) > -1 )
           links[ i ].disabled = true;
+          $scope.loadedThemes.push($scope.currentTheme);
+      }
+    }
+
+    function enableTheme(name) {
+      var links = [];
+      links = document.getElementsByTagName( 'link' );
+      for ( var i = links.length - 1; i >= 0; i-- ) {
+        if ( links[ i ].href.indexOf( 'themes/' + name ) > -1 )
+          links[ i ].disabled = false;
+          $scope.currentTheme = name;
       }
     }
 
     function loadTheme( name ) {
-      if ( $scope.themes.indexOf( name ) > -1 )
-        angularLoad.loadCSS( 'lib/themes/' + name + '.min.css' ).then( function ( el ) {
-          if(name !== $scope.currentTheme) 
-            disableTheme();
+      if ( $scope.themes.indexOf( name ) === -1 )   // Theme do not exist
+        return false;
+      if( name === $scope.currentTheme )            // Theme is already the current theme
+        return false;
+      if( $scope.loadedThemes.indexOf(name) > -1) // Theme is already loaded 
+        return enableTheme(name);
+        
+      angularLoad.loadCSS( 'lib/themes/' + name + '.min.css' ).then( function ( el ) {
+        if(name !== $scope.currentTheme) {
+          disableTheme();
           $scope.currentTheme = name;
-        } ).
-      catch ( function () {
-        loadDefaultTheme();
-      } );
-      else
-        loadDefaultTheme();
-    }
-
-    function loadDefaultTheme() {
-      disableTheme();
-      angularLoad.loadCSS( 'lib/themes/readable.min.css' ).then( function ( a ) {
-        $scope.currentTheme = 'readable';
-      } ).
-      catch ( function () {
-        console.warn( 'Error : Default theme loaded' );
+        }
+      } ).catch ( function () {
+        loadTheme('readable');
       } );
     }
-
-    loadTheme('readable');
-
+    loadTheme('yeti');
  }
  ] );

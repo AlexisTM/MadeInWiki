@@ -20,7 +20,8 @@ module.exports = {
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
     themes: [
-      'public/lib/themes/readable.min.css'
+      'public/lib/themes/readable.min.css',
+      'public/lib/themes/require/glyphicons.css'
     ],
 		css: [
 			'modules/*/client/css/*.css'
