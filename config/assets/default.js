@@ -19,6 +19,9 @@ module.exports = {
       ],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
+    themes: [
+      'public/lib/themes/*.min.css'
+    ],
 		css: [
 			'modules/*/client/css/*.css'
 		],

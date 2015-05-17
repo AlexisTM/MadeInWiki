@@ -37,7 +37,9 @@
 	<!-- Fav Icon -->
 	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
-	<!--Application CSS Files-->
+  <!--Themes CSS Files-->
+  {% for theme in themes %}<link rel="stylesheet" href="{{theme}}" disabled>{% endfor %}
+  <!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
 
 	<!-- HTML5 Shim -->
