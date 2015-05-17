@@ -61,7 +61,7 @@ var UserSchema = new Schema({
 	},
   theme:{
     type: String,
-    default: 'readable'
+    default: 'flatly'
   },
 	salt: {
 		type: String

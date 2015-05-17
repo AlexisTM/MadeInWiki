@@ -6,6 +6,7 @@ angular.module( 'core' ).controller( 'ThemeController', [ '$scope', '$state', 'A
     $scope.$state = $state;
     $scope.authentication = Authentication;
 
+    $scope.defaultTheme = 'flatly';
     $scope.themes = [
       'bootstrap',
       'cerulean',
@@ -26,7 +27,7 @@ angular.module( 'core' ).controller( 'ThemeController', [ '$scope', '$state', 'A
       'yeti'
     ];
 
-    $scope.currentTheme = 'readable';
+    $scope.currentTheme = $scope.defaultTheme;
     $scope.loadedThemes = [];
 
     function disableTheme() {
@@ -63,7 +64,7 @@ angular.module( 'core' ).controller( 'ThemeController', [ '$scope', '$state', 'A
           $scope.currentTheme = name;
         }
       } ).catch ( function () {
-        loadTheme('readable');
+        loadTheme($scope.defaultTheme);
       } );
     }
     
