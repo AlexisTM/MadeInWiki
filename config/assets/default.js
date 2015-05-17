@@ -4,8 +4,6 @@ module.exports = {
 	client: {
 		lib: {
 			css: [
-				//'public/lib/bootstrap/dist/css/bootstrap.css',
-				//'public/lib/bootstrap/dist/css/bootstrap-theme.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -20,8 +18,8 @@ module.exports = {
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
     themes: [
-      'public/lib/themes/readable.min.css',
-      'public/lib/themes/require/glyphicons.css'
+      'public/lib/themes/require/glyphicons.css',
+      'public/lib/themes/readable.min.css'
     ],
 		css: [
 			'modules/*/client/css/*.css'
