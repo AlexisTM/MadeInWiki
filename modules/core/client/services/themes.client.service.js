@@ -95,7 +95,7 @@ angular.module( 'core' )
         links = document.getElementsByTagName( 'link' );
         for ( var i = links.length - 1; i >= 0; i-- ) {
           if ( links[ i ].href.indexOf( 'themes/' ) > -1 ){
-            if( links[ i ].href.indexOf( 'themes/' + name ) === -1 )
+            if( (links[ i ].href.indexOf( 'themes/' + name ) === -1) && (links[ i ].href.indexOf( 'themes/require' ) === -1))
               links[ i ].disabled = true;
             else 
               links[ i ].disabled = false;

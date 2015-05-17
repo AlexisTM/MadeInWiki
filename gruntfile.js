@@ -75,8 +75,9 @@ module.exports = function (grunt) {
 			dev: {
 				script: 'server.js',
 				options: {
-					nodeArgs: ['--debug'],
-					ext: 'js,html',
+					//nodeArgs: ['--debug'],
+					ignore: ['node_modules/*'],
+          ext: 'js,html',
 					watch: _.union(defaultAssets.server.views, defaultAssets.server.allJS, defaultAssets.server.config)
 				}
 			}
