@@ -19,7 +19,7 @@ module.exports = {
 		},
     themes: [
       'public/lib/themes/require/glyphicons.css',
-      'public/lib/themes/readable.min.css'
+      'public/lib/themes/flatly.min.css'
     ],
 		css: [
 			'modules/*/client/css/*.css'

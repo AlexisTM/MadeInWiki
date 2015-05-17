@@ -1,8 +1,11 @@
 'use strict';
 
-angular.module('users').controller('EditProfileController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
+angular.module('users').controller('EditProfileController', ['$scope', '$http', '$location', 'Users', 'Authentication','$rootScope', 'ThemeService',
+	function($scope, $http, $location, Users, Authentication, $rootScope, ThemeService) {
 		$scope.user = Authentication.user;
+
+    $scope.themes = ThemeService.themes;
+    $scope.theme = Authentication.user.theme;
 
 		// Update a user profile
 		$scope.updateUserProfile = function(isValid) {
@@ -13,6 +16,7 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
 				user.$update(function(response) {
 					$scope.success = true;
 					Authentication.user = response;
+          ThemeService.loadTheme(response.theme);
 				}, function(response) {
 					$scope.error = response.data.message;
 				});
