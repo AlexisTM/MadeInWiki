@@ -22,7 +22,8 @@
 	"globals": { // Globals variables.
 		"angular": true,
 		"io": true,
-		"ApplicationConfiguration": true
+		"ApplicationConfiguration": true,
+    "markdownit" : true
 	},
 	"predef": [ // Extra globals.
 		"inject",
