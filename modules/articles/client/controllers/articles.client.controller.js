@@ -1,8 +1,9 @@
 'use strict';
-
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles',
+	function($scope, $stateParams, $sce, $location, Authentication, Articles) {
 		$scope.authentication = Authentication;
+
+    var md = markdownit();
 
 		$scope.create = function() {
 			var article = new Articles({
@@ -46,13 +47,18 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 		};
 
 		$scope.find = function() {
-			$scope.articles = Articles.query();
+			$scope.articles = Articles.query(function(){
+        
+      });
+
 		};
 
 		$scope.findOne = function() {
 			$scope.article = Articles.get({
 				articleId: $stateParams.articleId
-			});
+			}, function(){
+        $scope.article.contentRendered = $sce.trustAsHtml(md.render($scope.article.content));
+      });
 		};
 	}
 ]);

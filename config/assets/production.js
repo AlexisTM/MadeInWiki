@@ -18,8 +18,8 @@ module.exports = {
 			]
 		},
     themes: [
-      'public/lib/themes/require/glyphicons.css',
-      'public/lib/themes/flatly.min.css'
+      'public/themes/require/glyphicons.css',
+      'public/themes/flatly.min.css'
     ],
 		css: 'public/dist/application.min.css',
 		js: 'public/dist/application.min.js'

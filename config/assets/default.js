@@ -19,8 +19,8 @@ module.exports = {
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
     themes: [
-      'public/lib/themes/require/glyphicons.css',
-      'public/lib/themes/flatly.min.css'
+      'public/themes/require/glyphicons.css',
+      'public/themes/flatly.min.css'
     ],
 		css: [
 			'modules/*/client/css/*.css'
