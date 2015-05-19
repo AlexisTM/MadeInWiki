@@ -5,6 +5,7 @@ Article
 -------
 	
 	* title : String
+	* articleID : String
 	* [ components : Component ]
 	* abstract : String (160- chars)
 	* content : String (markdown)
@@ -20,6 +21,7 @@ Supplier
 --------
 
 	* name : String
+	* suplierID : String
 	* serial : String (10- chars)
 	* country : Country
 	* adress : String
@@ -42,6 +44,7 @@ Component
 ---------
 
 	* name : String (ex : Bluetooth slave)
+	* componentID : String
 	* reference : String (ex : HC-06 )
 	* [ suppliers : Supplier ]
 	* [ categories : Category ]
@@ -50,6 +53,7 @@ Component
 Category
 ----------
 
+	* categoryID: String
 	* name : String
 	* description : String
 	* [ component : Component ]
