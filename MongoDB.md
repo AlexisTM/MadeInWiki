@@ -10,35 +10,25 @@ Article
 	* abstract : String (160- chars)
 	* content : String (markdown)
 	* [ langages : Langages ]
-	* created : Date
 	* [ files : 
+	  - title : String
 	  - path : String 
 	  - description : String ]
-	* by : User
-	* [ edited : User ] 
+	* created : Human
+	* [ edited : Human ] 
 
 Supplier
 --------
 
 	* name : String
 	* suplierID : String
-	* serial : String (10- chars)
-	* country : Country
+	* country : String
 	* adress : String
 	* city : String
 	* score : Number
 	* [ components : 
 	  - component : Component
 	  - price : Number ]
-
-
-Country _Should store?_
---------
-
-	* name : String (China)
-	* serial : String (ZH)
-	* [ suppliers : Supplier ]
-
 
 Component
 ---------

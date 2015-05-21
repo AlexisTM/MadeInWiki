@@ -6,8 +6,12 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
     var md = markdownit();
 
 		$scope.create = function() {
-			var article = new Articles({
+      var article = new Articles({
+        lang: this.lang,
 				title: this.title,
+        abstract: this.abstract,
+        langages: this.langages,
+        components: [null],
 				content: this.content
 			});
 			article.$save(function(response) {
@@ -48,7 +52,6 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 
 		$scope.find = function() {
 			$scope.articles = Articles.query();
-
 		};
 
 		$scope.findOne = function() {

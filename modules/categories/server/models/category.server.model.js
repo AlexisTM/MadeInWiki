@@ -10,24 +10,23 @@ var mongoose = require('mongoose'),
  * Category Schema
  */
 var CategorySchema = new Schema({
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	title: {
+	categoryID: {
+    type: String,
+    required: 'ID is not unique or not given',
+    unique: true,
+    trim: true,
+    default: ''
+  },
+	name: {
 		type: String,
 		default: '',
 		trim: true,
 		required: 'Title cannot be blank'
 	},
-	content: {
+	description: {
 		type: String,
 		default: '',
 		trim: true
-	},
-	user: {
-		type: Schema.ObjectId,
-		ref: 'User'
 	}
 });
 

@@ -14,9 +14,11 @@ var path = require('path'),
 exports.create = function(req, res) {
 	var article = new Article(req.body);
 	article.user = req.user;
-
-	article.save(function(err) {
+  article.articleID = article.title.replace(/\W+/g, '_'); 
+  console.log(article);
+  article.save(function(err) {
 		if (err) {
+      console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
