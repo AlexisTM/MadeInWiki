@@ -6,17 +6,29 @@
 		<form name="componentForm" class="form-horizontal" data-ng-submit="create()" novalidate>
 			<fieldset>
 				<div class="form-group">
-					<label class="control-label" for="title">Title</label>
+					<label class="control-label" for="name">Name</label>
 					<div class="controls">
-						<input name="title" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title">
+						<input name="name" type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name">
 					</div>
 				</div>
+        <div class="form-group">
+          <label class="control-label" for="reference">Reference</label>
+          <div class="controls">
+            <input name="reference" type="text" data-ng-model="reference" id="reference" class="form-control" placeholder="Reference">
+          </div>
+        </div>
 				<div class="form-group">
-					<label class="control-label" for="content">Content</label>
-					<div class="controls">
-						<textarea name="content" data-ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-					</div>
-				</div>
+          <label class="control-label" for="categories">Categories</label>
+          <div class="controls">
+            <input name="categories" type="text" data-ng-model="categories" id="categories" class="form-control" placeholder="Categories">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="description">Description</label>
+          <div class="controls">
+            <input name="description" type="text" data-ng-model="description" id="description" class="form-control" placeholder="Description">
+          </div>
+        </div>
 				<div class="form-group">
 					<input type="submit" class="btn btn-default">
 				</div>

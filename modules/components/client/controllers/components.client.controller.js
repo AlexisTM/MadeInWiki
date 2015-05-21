@@ -1,20 +1,18 @@
 'use strict';
-angular.module('components').controller('ComponentsController', ['$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Components',
-	function($scope, $stateParams, $sce, $location, Authentication, Components) {
+angular.module('components').controller('ComponentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Components',
+	function($scope, $stateParams, $location, Authentication, Components) {
 		$scope.authentication = Authentication;
-
-    var md = markdownit();
 
 		$scope.create = function() {
 			var component = new Components({
-				title: this.title,
-				content: this.content
+				name: this.name,
+				reference: this.reference
 			});
 			component.$save(function(response) {
 				$location.path('components/' + response._id);
 
-				$scope.title = '';
-				$scope.content = '';
+				$scope.name = '';
+				$scope.reference = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -54,9 +52,7 @@ angular.module('components').controller('ComponentsController', ['$scope', '$sta
 		$scope.findOne = function() {
 			$scope.component = Components.get({
 				componentId: $stateParams.componentId
-			}, function(){
-        $scope.component.contentRendered = $sce.trustAsHtml(md.render($scope.component.content));
-      });
+			});
 		};
 	}
 ]);

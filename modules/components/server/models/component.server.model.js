@@ -28,6 +28,11 @@ var ComponentSchema = new Schema({
     default: '',
     trim: true
   },
+  description: {
+    type: String,
+    default: '',
+    trim: true
+  },
   suppliers: [{
     type: Schema.ObjectId,
     ref : 'Supplier'
