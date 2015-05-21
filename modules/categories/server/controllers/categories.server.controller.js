@@ -14,7 +14,7 @@ var path = require('path'),
 exports.create = function(req, res) {
 	var category = new Category(req.body);
 	category.user = req.user;
-
+  category.categoryID = category.name.replace(/\W+/g, '_');
 	category.save(function(err) {
 		if (err) {
 			return res.status(400).send({

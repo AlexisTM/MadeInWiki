@@ -4,14 +4,8 @@
 	</div>
 	<div class="list-group">
 		<a data-ng-repeat="category in categories"  data-ui-sref="categories.view({categoryId: category._id})" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="category.created | date:'mediumDate'"></span>
-				by
-				<span data-ng-bind="category.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="category.title"></h4>
-			<p class="list-group-item-text" data-ng-bind="category.content"></p>
+			<h4 class="list-group-item-heading" data-ng-bind="category.name"></h4>
+			<p class="list-group-item-text" data-ng-bind="category.description"></p>
 		</a>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="categories.$resolved && !categories.length">

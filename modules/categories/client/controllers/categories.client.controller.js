@@ -1,20 +1,19 @@
 'use strict';
-angular.module('categories').controller('CategoriesController', ['$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Categories',
-	function($scope, $stateParams, $sce, $location, Authentication, Categories) {
+angular.module('categories').controller('CategoriesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Categories',
+	function($scope, $stateParams, $location, Authentication, Categories) {
 		$scope.authentication = Authentication;
-
-    var md = markdownit();
 
 		$scope.create = function() {
 			var category = new Categories({
-				title: this.title,
-				content: this.content
+				name: this.name,
+				description: this.description
 			});
+
 			category.$save(function(response) {
 				$location.path('categories/' + response._id);
 
-				$scope.title = '';
-				$scope.content = '';
+				$scope.name = '';
+				$scope.description = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -54,9 +53,7 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
 		$scope.findOne = function() {
 			$scope.category = Categories.get({
 				categoryId: $stateParams.categoryId
-			}, function(){
-        $scope.category.contentRendered = $sce.trustAsHtml(md.render($scope.category.content));
-      });
+			});
 		};
 	}
 ]);
