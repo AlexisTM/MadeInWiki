@@ -14,7 +14,10 @@ var path = require('path'),
 exports.create = function(req, res) {
 	var component = new Component(req.body);
 	component.user = req.user;
-
+  var futureID = component.name + component.reference;
+  component.componentID = futureID.replace(/\W+/g, '_');
+  component.score = 5;
+  component.suppliers = null;
 	component.save(function(err) {
 		if (err) {
 			return res.status(400).send({

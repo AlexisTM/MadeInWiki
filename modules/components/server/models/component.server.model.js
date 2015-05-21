@@ -7,25 +7,9 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Human editor / creator
- */
-var HumanSchema = new Schema( {
-  fullName: String,
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  }
-} );
-
-/**
  * Component Schema
  */
 var ComponentSchema = new Schema({
-  created : [HumanSchema],
   name : {
     type: String,
     required : 'Please enter a name',
@@ -36,10 +20,11 @@ var ComponentSchema = new Schema({
 		default: '',
 		trim: true,
     unique : true,
-		required: 'ID'
+		required: 'ID is not unique... duplicated name and reference!'
 	},
   reference: {
     type: String,
+    required : 'The reference is required',
     default: '',
     trim: true
   },
