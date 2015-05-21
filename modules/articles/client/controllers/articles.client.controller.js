@@ -12,7 +12,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
         abstract: this.abstract,
         langages: this.langages,
         components: [null],
-				content: this.content
+				content: this.content,
+        files: [null]
 			});
 			article.$save(function(response) {
 				$location.path('articles/' + response._id);
