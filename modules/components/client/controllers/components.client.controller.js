@@ -36,7 +36,12 @@ angular.module('components').controller('ComponentsController', ['$scope', '$sta
 
 		$scope.update = function() {
 			var component = $scope.component;
-
+      if(component.suppliers === [])
+        component.suppliers = [null];
+      if(component.categories === [])
+        component.categories = [null];
+      if(component.images === [])
+        component.images = [null];
 			component.$update(function() {
 				$location.path('components/' + component._id);
 			}, function(errorResponse) {

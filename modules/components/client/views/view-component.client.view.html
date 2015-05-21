@@ -1,22 +1,16 @@
 <section data-ng-controller="ComponentsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="component.title"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="authentication.user._id == component.user._id">
-		<a class="btn btn-primary" data-ui-sref="components.edit({componentId: component._id})">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="component.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="component.user.displayName"></span>
-		</em>
-	</small>
-	<div class="lead" data-ng-bind-html="component.contentRendered"></div>
+    <div class="page-header">
+        <h1 data-ng-bind="component.name"></h1>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-primary" data-ui-sref="components.edit({componentId: component._id})">
+        <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+        <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div><strong>Categories :</strong> {{component.categories}}</div><br>
+    <div class="lead" data-ng-bind="component.description"></div>
+    <div><strong>Suppliers :</strong> {{component.suppliers}}</div><br>
 </section>
