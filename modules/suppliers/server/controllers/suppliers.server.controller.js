@@ -12,9 +12,10 @@ var path = require('path'),
  * Create a supplier
  */
 exports.create = function(req, res) {
+  req.body.score = 5;
 	var supplier = new Supplier(req.body);
 	supplier.user = req.user;
-
+  supplier.supplierID = supplier.title.replace(/\W+/g, '_').toLowerCase();
 	supplier.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -39,8 +40,13 @@ exports.read = function(req, res) {
 exports.update = function(req, res) {
 	var supplier = req.supplier;
 
-	supplier.title = req.body.title;
-	supplier.content = req.body.content;
+	supplier.name = req.body.name;
+	supplier.description = req.body.description;
+  supplier.reference = req.body.reference;
+  supplier.suppliers = req.body.suppliers;
+  supplier.categories = req.body.categories;
+  supplier.images = req.body.images;
+  supplier.score = req.body.score;
 
 	supplier.save(function(err) {
 		if (err) {

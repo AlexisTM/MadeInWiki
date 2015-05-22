@@ -1,66 +1,71 @@
 'use strict';
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $sce, $location, Authentication, Articles) {
-		$scope.authentication = Authentication;
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles',
+ function ( $scope, $stateParams, $sce, $location, Authentication, Articles ) {
+    $scope.authentication = Authentication;
 
     var md = markdownit();
 
-		$scope.create = function() {
-      var article = new Articles({
+    $scope.create = function () {
+      var article = new Articles( {
         lang: this.lang,
-				title: this.title,
+        title: this.title,
         abstract: this.abstract,
         langages: this.langages,
-        components: [null],
-				content: this.content,
-        files: [null]
-			});
-			article.$save(function(response) {
-				$location.path('articles/' + response._id);
+        components: [ null ],
+        content: this.content,
+        files: [ null ]
+      } );
 
-				$scope.title = '';
-				$scope.content = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+      article.$save( function ( response ) {
+        $location.path( 'articles/' + response._id );
+        $scope.title = '';
+        $scope.content = '';
+        $scope.lang = '';
+        $scope.title = '';
+        $scope.abstract = '';
+        $scope.langages = [ null ];
+        $scope.components = [ null ];
+      }, function ( errorResponse ) {
+        $scope.error = errorResponse.data.message;
+      } );
+    };
 
-		$scope.remove = function(article) {
-			if (article) {
-				article.$remove();
+    $scope.remove = function ( article ) {
+      if ( article ) {
+        article.$remove();
 
-				for (var i in $scope.articles) {
-					if ($scope.articles[i] === article) {
-						$scope.articles.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.article.$remove(function() {
-					$location.path('articles');
-				});
-			}
-		};
+        for ( var i in $scope.articles ) {
+          if ( $scope.articles[ i ] === article ) {
+            $scope.articles.splice( i, 1 );
+          }
+        }
+      } else {
+        $scope.article.$remove( function () {
+          $location.path( 'articles' );
+        } );
+      }
+    };
 
-		$scope.update = function() {
-			var article = $scope.article;
+    $scope.update = function () {
+      var article = $scope.article;
 
-			article.$update(function() {
-				$location.path('articles/' + article._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+      article.$update( function () {
+        $location.path( 'articles/' + article._id );
+      }, function ( errorResponse ) {
+        $scope.error = errorResponse.data.message;
+      } );
+    };
 
-		$scope.find = function() {
-			$scope.articles = Articles.query();
-		};
+    $scope.find = function () {
+      $scope.articles = Articles.query();
+    };
 
-		$scope.findOne = function() {
-			$scope.article = Articles.get({
-				articleId: $stateParams.articleId
-			}, function(){
-        $scope.article.contentRendered = $sce.trustAsHtml(md.render($scope.article.content));
-      });
-		};
-	}
-]);
+    $scope.findOne = function () {
+      $scope.article = Articles.get( {
+        articleId: $stateParams.articleId
+      }, function () {
+        $scope.article.contentRendered = $sce.trustAsHtml( md.render( $scope.article.content ) );
+      } );
+    };
+ }
+ ] );

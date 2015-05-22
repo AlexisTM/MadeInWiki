@@ -14,7 +14,7 @@ var path = require('path'),
 exports.create = function(req, res) {
 	var article = new Article(req.body);
 	article.user = req.user;
-  article.articleID = article.title.replace(/\W+/g, '_');
+  article.articleID = article.title.replace(/\W+/g, '_').toLowerCase();
   article.save(function(err) {
 		if (err) {
       console.log(err);

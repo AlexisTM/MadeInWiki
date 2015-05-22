@@ -4,9 +4,12 @@ angular.module('components').controller('ComponentsController', ['$scope', '$sta
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
+      this.categories = [null];
 			var component = new Components({
 				name: this.name,
-				reference: this.reference
+				reference: this.reference,
+        description: this.description,
+        categories: this.categories
 			});
 			component.$save(function(response) {
 				$location.path('components/' + response._id);
