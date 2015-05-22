@@ -16,8 +16,13 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
 			supplier.$save(function(response) {
 				$location.path('suppliers/' + response._id);
 
-				$scope.title = '';
-				$scope.content = '';
+        $scope.name = '';
+        $scope.country = '';
+        $scope.city = '';
+        $scope.address = '';
+        $scope.website = '';
+        $scope.mail = '';
+        $scope.description = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

@@ -54,7 +54,6 @@ exports.update = function ( req, res ) {
   supplier.categories = req.body.categories;
   supplier.images = req.body.images;
   supplier.score = req.body.score;
-
   supplier.save( function ( err ) {
     if ( err ) {
       return res.status( 400 ).send( {

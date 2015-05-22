@@ -8,14 +8,6 @@
 			<p class="list-group-item-text">
         {{ supplier.description}}   
       </p>
-      <address class="list-group-item-text">
-        {{ suuplier.website }}
-        <a href="mailto:{{ supplier.mail }}">{{ supplier.mail }}/a>
-        {{ supplier.name }} <br>
-        {{ supplier.address }}  <br>
-        {{ supplier.postcode }}, {{ supplier.city }} <br>
-        {{ supplier.country }} <br>
-      </address>
 		</a>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="suppliers.$resolved && !suppliers.length">

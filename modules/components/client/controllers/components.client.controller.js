@@ -16,6 +16,8 @@ angular.module('components').controller('ComponentsController', ['$scope', '$sta
 
 				$scope.name = '';
 				$scope.reference = '';
+        $scope.description = '';
+        $scope.categories = [null];
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -45,6 +47,7 @@ angular.module('components').controller('ComponentsController', ['$scope', '$sta
         component.categories = [null];
       if(component.images === [])
         component.images = [null];
+
 			component.$update(function() {
 				$location.path('components/' + component._id);
 			}, function(errorResponse) {

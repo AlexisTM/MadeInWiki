@@ -41,10 +41,10 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 	var component = req.component;
-
-	component.title = req.body.title;
-	component.content = req.body.content;
-
+	component.name = req.body.name;
+	component.reference = req.body.reference;
+  component.description = req.body.description;
+  component.categories = req.body.categories;
 	component.save(function(err) {
 		if (err) {
 			return res.status(400).send({
