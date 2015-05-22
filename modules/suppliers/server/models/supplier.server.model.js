@@ -59,12 +59,27 @@ var SupplierSchema = new Schema( {
     trim: true,
     required: 'Please enter a country'
   },
+  postcode: {
+    type: String,
+    default: '',
+    trim: true
+  },
   city: {
     type: String,
     default: '',
     trim: true
   },
   address: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  website: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  mail: {
     type: String,
     default: '',
     trim: true

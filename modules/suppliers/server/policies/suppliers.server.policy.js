@@ -28,7 +28,7 @@ exports.invokeRolesPolicies = function() {
 			permissions: ['get', 'post']
 		}, {
 			resources: '/api/suppliers/:supplierId',
-			permissions: ['get']
+			permissions: ['get', 'put']
 		}]
 	}, {
 		roles: ['guest'],
@@ -47,11 +47,6 @@ exports.invokeRolesPolicies = function() {
  */
 exports.isAllowed = function(req, res, next) {
 	var roles = (req.user) ? req.user.roles : ['guest'];
-
-	// If an supplier is being processed and the current user created it then allow any manipulation
-	if (req.supplier && req.user && req.supplier.user.id === req.user.id) {
-		return next();
-	}
 
 	// Check for user roles
 	acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function(err, isAllowed) {
