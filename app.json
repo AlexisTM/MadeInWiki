@@ -1,0 +1,13 @@
+{
+  "name":"MadeInWiki",
+  "description":"The missing doc of Chineses components",
+  "scripts":{
+    "postdeploy":"grunt"
+  },
+  "env":{
+    "NODE_ENV":{
+      "required":true
+    }
+  },
+  "addons":[]
+}
