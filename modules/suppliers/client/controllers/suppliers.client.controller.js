@@ -9,6 +9,7 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
         country: this.country,
         city: this.country,
         address: this.address,
+        postcode: this.postcode,
         website: this.website,
         mail: this.mail,
         description: this.description
@@ -20,6 +21,7 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
         $scope.country = '';
         $scope.city = '';
         $scope.address = '';
+        $scope.postcode = '';
         $scope.website = '';
         $scope.mail = '';
         $scope.description = '';

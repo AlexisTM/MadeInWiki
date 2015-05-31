@@ -49,11 +49,7 @@ exports.update = function ( req, res ) {
   supplier.country = req.body.country;
   supplier.postcode = req.body.postcode;
   supplier.description = req.body.description;
-  supplier.reference = req.body.reference;
   supplier.suppliers = req.body.suppliers;
-  supplier.categories = req.body.categories;
-  supplier.images = req.body.images;
-  supplier.score = req.body.score;
   supplier.save( function ( err ) {
     if ( err ) {
       return res.status( 400 ).send( {
