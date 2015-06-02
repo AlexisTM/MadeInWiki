@@ -88,24 +88,19 @@ angular.module('articles').run(['Menus',
 			title: 'Articles',
 			state: 'articles',
 			type: 'dropdown',
-      roles: ['*'],
       isPublic: true
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'List Articles',
-			state: 'articles.list',
-      roles: ['*'],
-      isPublic: true
+			state: 'articles.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'Create Articles',
-			state: 'articles.create',
-      roles: ['*'],
-      isPublic: true
+			state: 'articles.create'
 		});
 	}
 ]);
@@ -143,12 +138,13 @@ angular.module('articles').config(['$stateProvider',
 ]);
 
 'use strict';
-angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Menus',
- function ( $scope, $stateParams, $sce, $location, Authentication, Articles, Menus) {
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Categories','AuthService',
+ function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories, AuthService) {
     $scope.authentication = Authentication;
-
+    var authorizedRoles = ['admin', 'writer'];
     var md = markdownit();
 
+    $scope.categories = Categories.query();
     $scope.create = function () {
       var article = new Articles( {
         lang: this.lang,
@@ -201,7 +197,6 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     };
 
     $scope.find = function () {
-      console.log('qsdf');
       $scope.articles = Articles.query();
     };
 
@@ -210,6 +205,7 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
         articleId: $stateParams.articleId
       }, function () {
         $scope.article.contentRendered = $sce.trustAsHtml( md.render( $scope.article.content ) );
+        $scope.authorized = AuthService.isAuthorized(authorizedRoles);
       } );
     };
  }
@@ -239,7 +235,8 @@ angular.module('categories').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Categories',
 			state: 'categories',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item
@@ -370,7 +367,8 @@ angular.module('chat').run(['Menus',
 		// Set top bar menu items
 		Menus.addMenuItem('topbar', {
 			title: 'Chat',
-			state: 'chat'
+			state: 'chat',
+      isPublic: false
 		});
 	}
 ]);
@@ -432,7 +430,8 @@ angular.module('components').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Components',
 			state: 'components',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item
@@ -617,6 +616,21 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 ]);
 
 'use strict';
+//Menu service used for managing  menus
+angular.module('core').service('AuthService', ['Authentication',
+    function(Authentication) {
+        this.isAuthorized = function(roles) {
+            if (!Authentication.user) return false;
+            if (!Authentication.user.roles) return false;
+            for (var i = roles.length - 1; i >= 0; i--) {
+              if (Authentication.user.roles.indexOf(roles[i]) > -1) return true;
+            }
+            return false;
+        };
+    }
+]);
+
+'use strict';
 
 //Menu service used for managing  menus
 angular.module('core').service('Menus', [
@@ -749,7 +763,6 @@ angular.module('core').service('Menus', [
                     });
                 }
             }
-            console.log(this);
             // Return the menu object
             return this.menus[menuId];
         };
@@ -954,7 +967,8 @@ angular.module('suppliers').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Suppliers',
 			state: 'suppliers',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item
