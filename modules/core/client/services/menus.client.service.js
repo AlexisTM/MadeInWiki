@@ -1,9 +1,8 @@
 'use strict';
 
 //Menu service used for managing  menus
-angular.module('core').service('Menus', [ '$log',
-
-    function($log) {
+angular.module('core').service('Menus', [
+    function() {
         // Define a set of default roles
         this.defaultRoles = ['*'];
 
@@ -12,8 +11,7 @@ angular.module('core').service('Menus', [ '$log',
 
         // A private function for rendering decision 
         var shouldRender = function(user) {
-            $log.warn('Should I?');
-            if (user) {
+            if (user !== '' || user) {
                 if (!!~this.roles.indexOf('*')) {
                     return true;
                 } else {
@@ -133,7 +131,6 @@ angular.module('core').service('Menus', [ '$log',
                     });
                 }
             }
-
             // Return the menu object
             return this.menus[menuId];
         };
@@ -174,7 +171,7 @@ angular.module('core').service('Menus', [ '$log',
 
         //Adding the topbar menu
         this.addMenu('topbar', {
-            isPublic: false
+            isPublic: true
         });
     }
 ]);

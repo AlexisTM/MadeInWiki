@@ -1,6 +1,6 @@
 'use strict';
-angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles',
- function ( $scope, $stateParams, $sce, $location, Authentication, Articles ) {
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Menus',
+ function ( $scope, $stateParams, $sce, $location, Authentication, Articles, Menus) {
     $scope.authentication = Authentication;
 
     var md = markdownit();

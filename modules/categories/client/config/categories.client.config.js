@@ -7,19 +7,22 @@ angular.module('categories').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Categories',
 			state: 'categories',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'categories', {
 			title: 'List Categories',
-			state: 'categories.list'
+			state: 'categories.list',
+      isPublic: false
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'categories', {
 			title: 'Create Categories',
-			state: 'categories.create'
+			state: 'categories.create',
+      isPublic: false
 		});
 	}
 ]);

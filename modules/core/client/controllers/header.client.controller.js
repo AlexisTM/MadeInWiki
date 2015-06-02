@@ -7,7 +7,7 @@ angular.module( 'core' ).controller( 'HeaderController', [ '$scope', '$state', '
     $scope.authentication = Authentication;
     // Get the topbar menu
     $scope.menu = Menus.getMenu( 'topbar' );
-    
+
     ThemeService.loadTheme(Authentication.user.theme);
 
     // Toggle the menu items

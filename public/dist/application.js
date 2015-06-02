@@ -87,22 +87,29 @@ angular.module('articles').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Articles',
 			state: 'articles',
-			type: 'dropdown'
+			type: 'dropdown',
+      roles: ['*'],
+      isPublic: true
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'List Articles',
-			state: 'articles.list'
+			state: 'articles.list',
+      roles: ['*'],
+      isPublic: true
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'Create Articles',
-			state: 'articles.create'
+			state: 'articles.create',
+      roles: ['*'],
+      isPublic: true
 		});
 	}
 ]);
+
 
 'use strict';
 
@@ -136,8 +143,8 @@ angular.module('articles').config(['$stateProvider',
 ]);
 
 'use strict';
-angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles',
- function ( $scope, $stateParams, $sce, $location, Authentication, Articles ) {
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Menus',
+ function ( $scope, $stateParams, $sce, $location, Authentication, Articles, Menus) {
     $scope.authentication = Authentication;
 
     var md = markdownit();
@@ -194,6 +201,7 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     };
 
     $scope.find = function () {
+      console.log('qsdf');
       $scope.articles = Articles.query();
     };
 
@@ -581,10 +589,9 @@ angular.module( 'core' ).controller( 'HeaderController', [ '$scope', '$state', '
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
-
     // Get the topbar menu
     $scope.menu = Menus.getMenu( 'topbar' );
-    
+
     ThemeService.loadTheme(Authentication.user.theme);
 
     // Toggle the menu items
@@ -613,7 +620,6 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
 //Menu service used for managing  menus
 angular.module('core').service('Menus', [
-
     function() {
         // Define a set of default roles
         this.defaultRoles = ['*'];
@@ -623,7 +629,7 @@ angular.module('core').service('Menus', [
 
         // A private function for rendering decision 
         var shouldRender = function(user) {
-            if (user) {
+            if (user !== '' || user) {
                 if (!!~this.roles.indexOf('*')) {
                     return true;
                 } else {
@@ -743,7 +749,7 @@ angular.module('core').service('Menus', [
                     });
                 }
             }
-
+            console.log(this);
             // Return the menu object
             return this.menus[menuId];
         };
@@ -784,7 +790,7 @@ angular.module('core').service('Menus', [
 
         //Adding the topbar menu
         this.addMenu('topbar', {
-            isPublic: false
+            isPublic: true
         });
     }
 ]);
@@ -831,7 +837,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 'use strict';
 
 angular.module( 'core' )
-  .service( 'ThemeService', [ 'Authentication', '$rootScope', '$document', '$q', '$timeout' ,
+  .service( 'ThemeService', [ 'Authentication', '$rootScope', '$document', '$q', '$timeout',
       function (Authentication, $rootScope, $document, $q, $timeout ) {
 
       var defaultTheme = 'flatly';
@@ -1007,6 +1013,7 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
         country: this.country,
         city: this.country,
         address: this.address,
+        postcode: this.postcode,
         website: this.website,
         mail: this.mail,
         description: this.description
@@ -1018,6 +1025,7 @@ angular.module('suppliers').controller('SuppliersController', ['$scope', '$state
         $scope.country = '';
         $scope.city = '';
         $scope.address = '';
+        $scope.postcode = '';
         $scope.website = '';
         $scope.mail = '';
         $scope.description = '';
