@@ -1,11 +1,11 @@
 'use strict';
-angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Categories',
- function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories) {
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Categories','AuthService',
+ function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories, AuthService) {
     $scope.authentication = Authentication;
-
+    var authorizedRoles = ['admin'];
     var md = markdownit();
-    $scope.categories = Categories.query();
 
+    $scope.categories = Categories.query();
     $scope.create = function () {
       var article = new Articles( {
         lang: this.lang,
@@ -66,6 +66,7 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
         articleId: $stateParams.articleId
       }, function () {
         $scope.article.contentRendered = $sce.trustAsHtml( md.render( $scope.article.content ) );
+        $scope.authorized = AuthService.isAuthorized(authorizedRoles);
       } );
     };
  }
