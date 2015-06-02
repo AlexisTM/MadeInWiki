@@ -2,7 +2,7 @@
 angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Categories','AuthService',
  function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories, AuthService) {
     $scope.authentication = Authentication;
-    var authorizedRoles = ['admin'];
+    var authorizedRoles = ['admin', 'writer'];
     var md = markdownit();
 
     $scope.categories = Categories.query();
