@@ -7,19 +7,23 @@ angular.module('articles').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Articles',
 			state: 'articles',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: true
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'List Articles',
-			state: 'articles.list'
+			state: 'articles.list',
+      isPublic: true
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'Create Articles',
-			state: 'articles.create'
+			state: 'articles.create',
+      isPublic: true
 		});
 	}
 ]);
+

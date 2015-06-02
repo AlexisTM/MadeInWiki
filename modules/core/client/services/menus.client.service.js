@@ -1,9 +1,9 @@
 'use strict';
 
 //Menu service used for managing  menus
-angular.module('core').service('Menus', [
+angular.module('core').service('Menus', [ '$log',
 
-    function() {
+    function($log) {
         // Define a set of default roles
         this.defaultRoles = ['*'];
 
@@ -12,6 +12,7 @@ angular.module('core').service('Menus', [
 
         // A private function for rendering decision 
         var shouldRender = function(user) {
+            $log.warn('Should I?');
             if (user) {
                 if (!!~this.roles.indexOf('*')) {
                     return true;

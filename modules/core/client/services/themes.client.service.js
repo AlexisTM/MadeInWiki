@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module( 'core' )
-  .service( 'ThemeService', [ 'Authentication', '$rootScope', '$document', '$q', '$timeout' ,
+  .service( 'ThemeService', [ 'Authentication', '$rootScope', '$document', '$q', '$timeout',
       function (Authentication, $rootScope, $document, $q, $timeout ) {
 
       var defaultTheme = 'flatly';
