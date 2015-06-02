@@ -14,15 +14,13 @@ angular.module('articles').run(['Menus',
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'List Articles',
-			state: 'articles.list',
-      isPublic: true
+			state: 'articles.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'Create Articles',
-			state: 'articles.create',
-      isPublic: true
+			state: 'articles.create'
 		});
 	}
 ]);

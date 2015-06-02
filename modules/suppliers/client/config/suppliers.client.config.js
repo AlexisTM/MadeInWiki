@@ -7,7 +7,8 @@ angular.module('suppliers').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Suppliers',
 			state: 'suppliers',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item

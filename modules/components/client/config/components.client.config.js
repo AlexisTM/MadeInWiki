@@ -7,7 +7,8 @@ angular.module('components').run(['Menus',
 		Menus.addMenuItem('topbar', {
 			title: 'Components',
 			state: 'components',
-			type: 'dropdown'
+			type: 'dropdown',
+      isPublic: false
 		});
 
 		// Add the dropdown list item
