@@ -1,9 +1,10 @@
 'use strict';
-angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Menus',
- function ( $scope, $stateParams, $sce, $location, Authentication, Articles, Menus) {
+angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$stateParams', '$sce', '$location', 'Authentication', 'Articles', 'Categories',
+ function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories) {
     $scope.authentication = Authentication;
 
     var md = markdownit();
+    $scope.categories = Categories.query();
 
     $scope.create = function () {
       var article = new Articles( {
