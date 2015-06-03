@@ -13,7 +13,7 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
 				'public/lib/angular-file-upload/angular-file-upload.min.js',
-        'public/lib/angular-load/angular-load.js',
+        'public/lib/angular-load/angular-load.min.js',
         'public/lib/markdown-it/dist/markdown-it.min.js',
         'public/lib/markdown-it-emoji/dist/markdown-it-emoji.min.js',
         'public/lib/twemoji/twemoji.min.js',
@@ -24,7 +24,7 @@ module.exports = {
         'public/lib/markdown-it-mark/dist/markdown-it-mark.min.js',
         'public/lib/markdown-it-sub/dist/markdown-it-sub.min.js',
         'public/lib/markdown-it-sup/dist/markdown-it-sup.min.js',
-        'public/dist/markdown-it-abbr.min.js'
+        'public/lib/markdown-it-abbr/dist/markdown-it-abbr.min.js'
 			]
 		},
     themes: [

@@ -18,7 +18,7 @@ var FileSchema = new Schema( {
   },
   path: {
     type: String,
-    required: 'Is the file here?',
+    required: 'Path could be absolute or from a distant server',
     default: ''
   },
   description: String
@@ -81,6 +81,10 @@ var ArticleSchema = new Schema( {
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  files: {
+    type: Schema.ObjectId,
+    ref: 'File'
   },
   created: {
     type:Date,

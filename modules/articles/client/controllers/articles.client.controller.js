@@ -27,9 +27,31 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
               }
             }
         });
+
     md.renderer.rules.emoji = function(token, idx) {
       return window.twemoji.parse(token[idx].content);
     };
+
+    md.renderer.rules.footnote_ref = function (tokens, idx) {
+      var n = Number(tokens[idx].meta.id + 1).toString();
+      var id = 'fnref' + n;
+      var uri = window.location.pathname;
+      if (tokens[idx].meta.subId > 0) {
+        id += ':' + tokens[idx].meta.subId;
+      }
+      return '<sup class="footnote-ref"><a href="' + uri + '#fn' + n + '" id="' + id + '">[' + n + ']</a></sup>';
+    };
+
+    md.renderer.rules.footnote_anchor = function(tokens, idx) {
+      var n = Number(tokens[idx].meta.id + 1).toString();
+      var id = 'fnref' + n;
+      var uri = window.location.pathname;
+      if (tokens[idx].meta.subId > 0) {
+        id += ':' + tokens[idx].meta.subId;
+      }
+      return ' <a href="' + uri + '#' + id + '" class="footnote-backref">\u21a9</a>'; /* ↩ */
+    };
+
 
 
     $scope.categories = Categories.query();

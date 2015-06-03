@@ -24,7 +24,7 @@ module.exports = {
         'public/lib/markdown-it-mark/dist/markdown-it-mark.min.js',
         'public/lib/markdown-it-sub/dist/markdown-it-sub.min.js',
         'public/lib/markdown-it-sup/dist/markdown-it-sup.min.js',
-        'public/dist/markdown-it-abbr.min.js'
+        'public/lib/markdown-it-abbr/dist/markdown-it-abbr.min.js'
       ],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
