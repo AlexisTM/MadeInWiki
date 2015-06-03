@@ -3,7 +3,10 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
  function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories, AuthService) {
     $scope.authentication = Authentication;
     var authorizedRoles = ['admin', 'writer'];
-    var md = markdownit();
+    
+
+    var md = markdownit().use(window.markdownitEmoji);
+
 
     $scope.categories = Categories.query();
     $scope.create = function () {

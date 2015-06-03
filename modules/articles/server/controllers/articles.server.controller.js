@@ -38,10 +38,12 @@ exports.read = function(req, res) {
  * Update a article
  */
 exports.update = function(req, res) {
-	var article = req.article;
+  var article = req.article;
 
 	article.title = req.body.title;
 	article.content = req.body.content;
+  article.langages = req.body.langages;
+  article.abstract = req.body.abstract;
 
 	article.save(function(err) {
 		if (err) {

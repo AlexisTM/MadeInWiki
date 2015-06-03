@@ -14,7 +14,8 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/angular-load/angular-load.js',
-        'public/lib/markdown-it/dist/markdown-it.min.js'
+        'public/lib/markdown-it/dist/markdown-it.min.js',
+        'public/lib/markdown-it-emoji/dist/markdown-it-emoji.min.js'
       ],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
