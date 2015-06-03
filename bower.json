@@ -14,6 +14,7 @@
     "angular-file-upload": "~1.1.5",
     "angular-load": "~0.2.0",
     "markdown-it": "~4.2.1",
-    "markdown-it-emoji": "~1.0.0"
+    "markdown-it-emoji": "~1.0.0",
+    "twemoji": "~1.4.1"
   }
 }

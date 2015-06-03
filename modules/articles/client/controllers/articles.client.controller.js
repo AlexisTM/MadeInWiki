@@ -6,6 +6,9 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     
 
     var md = markdownit().use(window.markdownitEmoji);
+    md.renderer.rules.emoji = function(token, idx) {
+      return twemoji.parse(token[idx].content);
+    };
 
 
     $scope.categories = Categories.query();
