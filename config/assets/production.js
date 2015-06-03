@@ -16,7 +16,15 @@ module.exports = {
         'public/lib/angular-load/angular-load.js',
         'public/lib/markdown-it/dist/markdown-it.min.js',
         'public/lib/markdown-it-emoji/dist/markdown-it-emoji.min.js',
-        'public/lib/twemoji/twemoji.min.js'
+        'public/lib/twemoji/twemoji.min.js',
+        'public/lib/markdown-it-container/dist/markdown-it-container.min.js',
+        'public/lib/markdown-it-deflist/dist/markdown-it-deflist.min.js',
+        'public/lib/markdown-it-footnote/dist/markdown-it-footnote.min.js',
+        'public/lib/markdown-it-ins/dist/markdown-it-ins.min.js',
+        'public/lib/markdown-it-mark/dist/markdown-it-mark.min.js',
+        'public/lib/markdown-it-sub/dist/markdown-it-sub.min.js',
+        'public/lib/markdown-it-sup/dist/markdown-it-sup.min.js',
+        'public/dist/markdown-it-abbr.min.js'
 			]
 		},
     themes: [

@@ -5,13 +5,35 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     var authorizedRoles = ['admin', 'writer'];
     
 
-    var md = markdownit().use(window.markdownitEmoji);
+    var md = window.markdownit()
+        .use(window.markdownitEmoji)
+        .use(window.markdownitAbbr)
+        .use(window.markdownitDeflist)
+        .use(window.markdownitFootnote)
+        .use(window.markdownitMark)
+        .use(window.markdownitIns)
+        .use(window.markdownitSub)
+        .use(window.markdownitSup)
+        .use(window.markdownitContainer, 'spoiler', {
+            validate: function(params) {
+              return params.trim().match(/^spoiler\s+(.*)$/);
+            },
+            render: function (tokens, idx) {
+              var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
+              if (tokens[idx].nesting === 1) {
+                return '<details><summary>' + m[1] + '</summary>\n';
+              } else {
+                return '</details>\n';
+              }
+            }
+        });
     md.renderer.rules.emoji = function(token, idx) {
-      return twemoji.parse(token[idx].content);
+      return window.twemoji.parse(token[idx].content);
     };
 
 
     $scope.categories = Categories.query();
+
     $scope.create = function () {
       var article = new Articles( {
         lang: this.lang,
