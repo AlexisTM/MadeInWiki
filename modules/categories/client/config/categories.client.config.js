@@ -8,7 +8,7 @@ angular.module('categories').run(['Menus',
 			title: 'Categories',
 			state: 'categories',
 			type: 'dropdown',
-      isPublic: false
+			isPublic: false
 		});
 
 		// Add the dropdown list item
