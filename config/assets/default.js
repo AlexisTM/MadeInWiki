@@ -24,11 +24,13 @@ module.exports = {
         'public/lib/markdown-it-mark/dist/markdown-it-mark.min.js',
         'public/lib/markdown-it-sub/dist/markdown-it-sub.min.js',
         'public/lib/markdown-it-sup/dist/markdown-it-sup.min.js',
-        'public/lib/markdown-it-abbr/dist/markdown-it-abbr.min.js'
+        'public/lib/markdown-it-abbr/dist/markdown-it-abbr.min.js',
+        'public/dist/highlight/highlight.pack.js'
       ],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
     themes: [
+      'public/dist/highlight/styles/sunburst.css',
       'public/themes/require/glyphicons.css',
       'public/themes/flatly.min.css'
     ],

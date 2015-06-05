@@ -5,7 +5,20 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     var authorizedRoles = ['admin', 'writer'];
     
 
-    var md = window.markdownit()
+    var md = window.markdownit({
+          highlight: function (str, lang) {
+            if (lang && window.hljs.getLanguage(lang)) {
+              try {
+                return window.hljs.highlight(lang, str).value;
+              } catch (__) {}
+            }
+            try {
+              return window.hljs.highlightAuto(str).value;
+            } catch (__) {
+            }
+            return ''; // use external default escaping
+          }
+        })
         .use(window.markdownitEmoji)
         .use(window.markdownitAbbr)
         .use(window.markdownitDeflist)
