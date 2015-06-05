@@ -77,7 +77,7 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
         langages: this.langages,
         components: [ null ],
         content: this.content,
-        files: [ null ]
+        files: null
       } );
 
       article.$save( function ( response ) {
