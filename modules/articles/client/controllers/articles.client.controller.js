@@ -17,7 +17,9 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
             } catch (__) {
             }
             return ''; // use external default escaping
-          }
+          },
+          linkify: true,
+          typographer: true
         })
         .use(window.markdownitEmoji)
         .use(window.markdownitAbbr)
@@ -65,7 +67,9 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
       return ' <a href="' + uri + '#' + id + '" class="footnote-backref">\u21a9</a>'; /* ↩ */
     };
 
-
+    md.renderer.rules.table_open = function() {
+      return '<table class="table">';
+    };
 
     $scope.categories = Categories.query();
 
