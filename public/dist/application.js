@@ -88,7 +88,7 @@ angular.module('articles').run(['Menus',
 			title: 'Articles',
 			state: 'articles',
 			type: 'dropdown',
-      isPublic: true
+			isPublic: true
 		});
 
 		// Add the dropdown list item
@@ -100,7 +100,8 @@ angular.module('articles').run(['Menus',
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'articles', {
 			title: 'Create Articles',
-			state: 'articles.create'
+			state: 'articles.create',
+      isPublic: false
 		});
 	}
 ]);
@@ -144,7 +145,20 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
     var authorizedRoles = ['admin', 'writer'];
     
 
-    var md = window.markdownit()
+    var md = window.markdownit({
+          highlight: function (str, lang) {
+            if (lang && window.hljs.getLanguage(lang)) {
+              try {
+                return window.hljs.highlight(lang, str).value;
+              } catch (__) {}
+            }
+            try {
+              return window.hljs.highlightAuto(str).value;
+            } catch (__) {
+            }
+            return ''; // use external default escaping
+          }
+        })
         .use(window.markdownitEmoji)
         .use(window.markdownitAbbr)
         .use(window.markdownitDeflist)
@@ -203,7 +217,7 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
         langages: this.langages,
         components: [ null ],
         content: this.content,
-        files: [ null ]
+        files: null
       } );
 
       article.$save( function ( response ) {
@@ -286,7 +300,7 @@ angular.module('categories').run(['Menus',
 			title: 'Categories',
 			state: 'categories',
 			type: 'dropdown',
-      isPublic: false
+			isPublic: false
 		});
 
 		// Add the dropdown list item
