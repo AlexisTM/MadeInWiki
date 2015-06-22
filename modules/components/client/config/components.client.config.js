@@ -8,7 +8,8 @@ angular.module('components').run(['Menus',
 			title: 'Components',
 			state: 'components',
 			type: 'dropdown',
-      isPublic: false
+      isPublic: false,
+      roles: ['admin', 'writer']
 		});
 
 		// Add the dropdown list item

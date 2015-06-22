@@ -22,6 +22,15 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
   } ]
  }, {
+    roles: [ 'writer' ],
+    allows: [ {
+      resources: '/api/components',
+      permissions: '*'
+  }, {
+      resources: '/api/components/:componentId',
+      permissions: '*'
+  } ]
+ }, {
     roles: [ 'user' ],
     allows: [ {
       resources: '/api/components',
