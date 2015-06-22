@@ -143,7 +143,14 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
  function ( $scope, $stateParams, $sce,$location, Authentication, Articles, Categories, AuthService) {
     $scope.authentication = Authentication;
     var authorizedRoles = ['admin', 'writer'];
-    
+
+    var validateName = function(name){
+      return function(params){
+        var m = params.trim();
+        m = m.trim().split(' ')[0];
+        return m === name;
+      };
+    };
 
     var md = window.markdownit({
           highlight: function (str, lang) {
@@ -157,7 +164,9 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
             } catch (__) {
             }
             return ''; // use external default escaping
-          }
+          },
+          linkify: true,
+          typographer: true
         })
         .use(window.markdownitEmoji)
         .use(window.markdownitAbbr)
@@ -168,17 +177,35 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
         .use(window.markdownitSub)
         .use(window.markdownitSup)
         .use(window.markdownitContainer, 'spoiler', {
-            validate: function(params) {
-              return params.trim().match(/^spoiler\s+(.*)$/);
+            validate: new validateName('spoiler'),
+            render: function (tokens, idx) {
+            if (tokens[idx].nesting === 1) {
+              var m = tokens[idx].info.trim();
+              var index = m.indexOf(' ');
+              if(index === -1) 
+                m = 'spoiler';
+              else 
+                m = m.slice(index).trim();
+              return '<details><summary>' + m + '</summary>\n';
+            } else {
+              return '</details>\n';
+            }
+          }
+        })
+        .use(window.markdownitContainer, 'css', {
+            validate: function(params){
+              var m = params.trim();
+              m = m.trim().split(' ')[0];
+              return m !== name;
             },
             render: function (tokens, idx) {
-              var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
-              if (tokens[idx].nesting === 1) {
-                return '<details><summary>' + m[1] + '</summary>\n';
-              } else {
-                return '</details>\n';
-              }
+            if (tokens[idx].nesting === 1) {
+              var m = tokens[idx].info.trim();
+              return '<div class="alert alert-'+m+'">\n';
+            } else {
+              return '</div>\n';
             }
+          }
         });
 
     md.renderer.rules.emoji = function(token, idx) {
@@ -205,7 +232,9 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
       return ' <a href="' + uri + '#' + id + '" class="footnote-backref">\u21a9</a>'; /* ↩ */
     };
 
-
+    md.renderer.rules.table_open = function() {
+      return '<table class="table">';
+    };
 
     $scope.categories = Categories.query();
 
@@ -300,7 +329,8 @@ angular.module('categories').run(['Menus',
 			title: 'Categories',
 			state: 'categories',
 			type: 'dropdown',
-			isPublic: false
+			isPublic: false,
+      roles: ['admin', 'writer']
 		});
 
 		// Add the dropdown list item
@@ -495,7 +525,8 @@ angular.module('components').run(['Menus',
 			title: 'Components',
 			state: 'components',
 			type: 'dropdown',
-      isPublic: false
+      isPublic: false,
+      roles: ['admin', 'writer']
 		});
 
 		// Add the dropdown list item
