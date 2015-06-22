@@ -22,13 +22,22 @@ exports.invokeRolesPolicies = function() {
 			permissions: '*'
 		}]
 	}, {
+    roles: ['writer'],
+    allows: [{
+      resources: '/api/suppliers',
+      permissions: '*'
+    }, {
+      resources: '/api/suppliers/:supplierId',
+      permissions: '*'
+    }]
+  }, {
 		roles: ['user'],
 		allows: [{
 			resources: '/api/suppliers',
-			permissions: ['get', 'post']
+			permissions: ['get']
 		}, {
 			resources: '/api/suppliers/:supplierId',
-			permissions: ['get', 'put']
+			permissions: ['get']
 		}]
 	}, {
 		roles: ['guest'],
