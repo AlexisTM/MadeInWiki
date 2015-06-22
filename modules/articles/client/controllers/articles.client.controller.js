@@ -96,8 +96,6 @@ angular.module( 'articles' ).controller( 'ArticlesController', [ '$scope', '$sta
       return '<table class="table">';
     };
 
-    console.log(md.renderer.rules);
-
     $scope.categories = Categories.query();
 
     $scope.create = function () {

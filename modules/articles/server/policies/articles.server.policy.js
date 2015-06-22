@@ -22,10 +22,19 @@ exports.invokeRolesPolicies = function() {
 			permissions: '*'
 		}]
 	}, {
+    roles: ['writer'],
+    allows: [{
+      resources: '/api/articles',
+      permissions: '*'
+    }, {
+      resources: '/api/articles/:articleId',
+      permissions: '*'
+    }]
+  }, {
 		roles: ['user'],
 		allows: [{
 			resources: '/api/articles',
-			permissions: ['get', 'post']
+			permissions: ['get']
 		}, {
 			resources: '/api/articles/:articleId',
 			permissions: ['get']
@@ -39,7 +48,8 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/articles/:articleId',
 			permissions: ['get']
 		}]
-	}]);
+	}
+  ]);
 };
 
 /**
