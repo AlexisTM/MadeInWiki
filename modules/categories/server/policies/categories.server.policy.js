@@ -22,13 +22,22 @@ exports.invokeRolesPolicies = function() {
 			permissions: '*'
 		}]
 	}, {
+    roles: ['writer'],
+    allows: [{
+      resources: '/api/categories',
+      permissions: '*'
+    }, {
+      resources: '/api/categories/:categoryId',
+      permissions: '*'
+    }]
+  }, {
 		roles: ['user'],
 		allows: [{
 			resources: '/api/categories',
-			permissions: ['get', 'post']
+			permissions: ['get']
 		}, {
 			resources: '/api/categories/:categoryId',
-			permissions: ['get', 'put']
+			permissions: ['get']
 		}]
 	}, {
 		roles: ['guest'],
